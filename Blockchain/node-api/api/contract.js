@@ -4,11 +4,11 @@ const path = require('path')
 const {Wallets,Gateway} = require('fabric-network')
 
 const CONNECTION_PROFILE_PATH = path.resolve(__dirname,"../test-client/connection.yaml")
-const WALLET_PATH= path.resolve(__dirname,"../test-client/wallet")
+const WALLET_PATH= path.resolve(__dirname,"../test-client/wallet/Org1")
 
 const IDENTITY_NAME = "client"
-const CHANNEL_NAME = "test"
-const CONTRACT_NAME="test"
+const CHANNEL_NAME = "mychannel"
+const CONTRACT_NAME="health"
 
 
 const contract =  async (type,inputs,callback) =>{

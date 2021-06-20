@@ -2,12 +2,8 @@ const fabricCAService =require('fabric-ca-client')
 const {Wallets} = require('fabric-network')
 const yaml = require('js-yaml')
 const fs = require('fs')
-const clientName = "client"
-const walletPath = './wallet'
-// const ccp = yaml.safeLoad(fs.readFileSync('./connection.yaml'))
-// const  caConfig = ccp.certificateAuthorities[ccp.organizations.Peepaltree.certificateAuthorities[0]]
 
-const main = async () =>{
+const registerUser = async (walletPath, clientName, affiliation, MSP, url) => {
     try {
         const wallet = await Wallets.newFileSystemWallet(walletPath)
         const admin = await wallet.get('admin')
@@ -20,11 +16,10 @@ const main = async () =>{
             console.log(`${clientName} already exists`)
             return
         }
-        const ca = new fabricCAService("http://localhost:7054")
+        const ca = new fabricCAService(url)
         const provider =  wallet.getProviderRegistry().getProvider(admin.type)
         const adminUser = await provider.getUserContext(admin,'admin')
-        
-        await ca.register({enrollmentID:clientName,role:'client',enrollmentSecret:'pw'},adminUser)
+        await ca.register({affiliation: 'org1.department1',enrollmentID:clientName,role:'client',enrollmentSecret:'pw'},adminUser)
         console.log(`${clientName} has been registered`)
         
         const enrollment = await ca.enroll({enrollmentID:clientName,enrollmentSecret:'pw'},)
@@ -33,7 +28,7 @@ const main = async () =>{
                 certificate: enrollment.certificate,
                 privateKey: enrollment.key.toBytes(),
             },
-            mspId: 'DevMSP',
+            mspId: MSP,
             type: 'X.509',
         }
         await wallet.put(clientName,x509Identity)
@@ -43,5 +38,9 @@ const main = async () =>{
     } finally{
         process.exit(1)
     }
+}
+const main = async () =>{
+    await registerUser("./wallet/Org1", "elvis", "org1.department1", "Org1MSP", "http://localhost:7054")
+    await registerUser("./wallet/Org2", "elvis", "org2.department1", "Org2MSP", "http://localhost:8054")
 }
 main()
