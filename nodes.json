@@ -1,18 +1,30 @@
 [
     {
-       "name": "ca",
+       "name": "ca.org1.example.com",
        "api_url": "http://localhost:7054",
        "type": "fabric-ca",
-       "ca_name": "ca"
+       "ca_name": "ca.org1.example.com"
     },
     {
-       "name": "devpeer",
+       "name": "peer0.org1.example.com",
        "api_url": "grpc://localhost:7051",
        "type": "fabric-peer",
-       "msp_id": "DevMSP"
+       "msp_id": "Org1MSP"
     },
     {
-       "name": "orderer",
+      "name": "ca.org2.example.com",
+      "api_url": "http://localhost:8054",
+      "type": "fabric-ca",
+      "ca_name": "ca.org2.example.com"
+   },
+   {
+      "name": "peer0.org2.example.com",
+      "api_url": "grpc://localhost:8051",
+      "type": "fabric-peer",
+      "msp_id": "Org2MSP"
+   },
+    {
+       "name": "orderer.example.com",
        "api_url": "grpc://localhost:7050",
        "type": "fabric-orderer",
        "msp_id": "OrdererMSP"
