@@ -82,8 +82,8 @@ commitForOrgs(){
     setGlobalsForPeer0Org1
     peer lifecycle chaincode commit -o orderer.example.com:7050  \
         --channelID $CHANNEL_NAME --name ${CC_NAME} \
-        --peerAddresses peer0.org1.example.com:7051 --tlsRootCertFiles $PEER0_ORG1_CA \
-        --peerAddresses peer0.org2.example.com:7051 --tlsRootCertFiles $PEER0_ORG2_CA \
+        --peerAddresses peer0.org1.example.com:7051  \
+        --peerAddresses peer0.org2.example.com:7051 \
         --version ${VERSION} --sequence ${VERSION} 
 }
 
