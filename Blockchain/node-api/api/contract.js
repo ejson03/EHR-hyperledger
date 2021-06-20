@@ -8,7 +8,7 @@ const WALLET_PATH= path.resolve(__dirname,"../test-client/wallet")
 
 const IDENTITY_NAME = "client"
 const CHANNEL_NAME = "test"
-const CONTRACT_NAME="health"
+const CONTRACT_NAME="test"
 
 
 const contract =  async (type,inputs,callback) =>{
