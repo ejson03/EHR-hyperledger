@@ -24,12 +24,11 @@ This project leverages a hyperledger fabric (v2.0) network maintained by hospita
 
 ### Create and join channel
     > docker exec -it cli bash
-    > cd artifacts && ./createChannel.sh
+    > ./createChannel.sh
 
 ### Package and install chaincode
     > docker exec -it cli bash
-    > cd $GOPATH/src/chaincode && go mod vendor
-    > ./createChaincode.sh
+    > cd $GOPATH/src/chaincode && ./createChaincode.sh
 
 ### Start Hyperledger Explorer to view blocks
     > cd explorer

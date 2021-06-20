@@ -6,4 +6,4 @@ package-lock.json
 artifacts/
 crypto-config/
 *.tar.gz
-
+log.txt
